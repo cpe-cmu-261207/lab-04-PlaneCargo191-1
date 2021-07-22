@@ -12,6 +12,7 @@ const addBtn = document.getElementById('addBtn')
 const main = document.createElement('div')
 const spanTask = document.createElement('span')
 const todoList = document.createElement('ul')
+const doneList = document.createElement('ul')
 
 //Add List by Clicking
 addBtn.addEventListener('click', () => {
@@ -39,6 +40,7 @@ addBtn.addEventListener('click', () => {
         doneBtn.addEventListener('click', () => {
             newItem.removeChild(doneBtn)
             newItem.removeChild(delBtn)
+            doneList.insertBefore(newItem, doneList.childNodes[0])
             newItem.style.textDecoration = 'line-through'
         })
         delBtn.addEventListener('click', () => {
@@ -52,6 +54,7 @@ addBtn.addEventListener('click', () => {
         newItem.append(delBtn)
         todoList.insertBefore(newItem, todoList.childNodes[0])
         spanTask.append(todoList)
+        spanTask.append(doneList)
         main.append(spanTask)
     } else {
         alert('The Task Box is NOT Filled')
