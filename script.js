@@ -7,24 +7,32 @@ const todoList = document.createElement('ul')
 
 //Add List by Clicking
 addBtn.addEventListener('click', () => {
-    const newItem = document.createElement("li")
-    let item = input.value
-    newItem.append(item)
-    todoList.insertBefore(newItem, todoList.childNodes[0])
-    spanTask.append(todoList)
-    main.append(spanTask)
-})
-
-//Add List by Enter Key
-input.addEventListener('keypress', ev => {
-    if(ev.code === 'Enter') {
-        ev.preventDefault()
+    if(input.value.length != 0) {
         const newItem = document.createElement("li")
         let item = input.value
         newItem.append(item)
         todoList.insertBefore(newItem, todoList.childNodes[0])
         spanTask.append(todoList)
         main.append(spanTask)
+    } else {
+        alert('The Task Box is NOT Filled!')
+    }
+})
+
+//Add List by Enter Key
+input.addEventListener('keypress', ev => {
+    if(input.value.length != 0) {
+        if(ev.code === 'Enter') {
+            ev.preventDefault()
+            const newItem = document.createElement("li")
+            let item = input.value
+            newItem.append(item)
+            todoList.insertBefore(newItem, todoList.childNodes[0])
+            spanTask.append(todoList)
+            main.append(spanTask)
+        }
+    } else {
+        alert('The Task Box is NOT Filled!')
     }
 })
 
