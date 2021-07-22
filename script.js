@@ -15,14 +15,14 @@ addBtn.addEventListener('click', () => {
         spanTask.append(todoList)
         main.append(spanTask)
     } else {
-        alert('The Task Box is NOT Filled!')
+        alert('The Task Box is NOT Filled')
     }
 })
 
 //Add List by Enter Key
 input.addEventListener('keypress', ev => {
-    if(input.value.length != 0) {
-        if(ev.code === 'Enter') {
+    if(ev.code === 'Enter') {
+        if(input.value.length != 0) {
             ev.preventDefault()
             const newItem = document.createElement("li")
             let item = input.value
@@ -30,9 +30,9 @@ input.addEventListener('keypress', ev => {
             todoList.insertBefore(newItem, todoList.childNodes[0])
             spanTask.append(todoList)
             main.append(spanTask)
+        } else {
+            alert('The Task Box is NOT Filled')
         }
-    } else {
-        alert('The Task Box is NOT Filled!')
     }
 })
 
