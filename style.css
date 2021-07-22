@@ -1,0 +1,32 @@
+.doneBtn {
+    background-color: green;
+    color: yellow;
+    border: 2px solid green;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: medium;
+    font: bolder;
+    box-shadow: 4px 4px 2px grey;
+    visibility: hidden;
+}
+
+.delBtn {
+    background-color: red;
+    color: white;
+    border: 2px solid red;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: medium;
+    font: bolder;
+    box-shadow: 4px 4px 2px grey;
+    visibility: hidden;
+}
+
+.taskList {
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    font-size: xx-large;
+    text-align: center;
+    
+}
