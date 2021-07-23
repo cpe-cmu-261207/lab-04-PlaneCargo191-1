@@ -1,5 +1,5 @@
 //import CSS
-var head = document.getElementsByTagName('HEAD')[0]
+var head = document.getElementsByTagName('head')[0]
 var link = document.createElement('link')
 link.rel = 'stylesheet'
 link.type = 'text/css'
@@ -10,71 +10,77 @@ head.appendChild(link)
 const input = document.getElementById('input')
 const addBtn = document.getElementById('addBtn')
 const main = document.createElement('div')
-const spanTask = document.createElement('span')
-const todoList = document.createElement('ul')
-const doneList = document.createElement('ul')
+const tasks = document.createElement('div')
+const todoList = document.createElement('div')
+const doneList = document.createElement('div')
 
-//Add List by Clicking
-addBtn.addEventListener('click', () => {
+todoList.style.textAlign = 'left'
+doneList.style.textAlign = 'right'
+doneList.style.marginRight = '40px'
+tasks.style.display = 'flex'
+tasks.style.justifyContent = 'space-between'
+
+const doList = () => {
     if(input.value.length != 0) {
         //Declare
-        const newItem = document.createElement("li")
-        newItem.style.textDecoration = 'none'
+        const newItem = document.createElement('span')
         const doneBtn = document.createElement('button')
         const delBtn = document.createElement('button')
+        const btn = document.createElement('button')
+        const list = document.createElement('div')
 
         doneBtn.innerHTML = 'DONE'
         doneBtn.className = 'doneBtn'
         delBtn.innerHTML = 'DELETE'
         delBtn.className = 'delBtn'
 
+        newItem.className = 'item'
+
         //Function
-        newItem.addEventListener('mouseover', () => {
+        list.addEventListener('mouseover', () => {
             doneBtn.style.visibility = 'visible'
             delBtn.style.visibility = 'visible'
         })
-        newItem.addEventListener('mouseleave', () => {
+        list.addEventListener('mouseleave', () => {
             doneBtn.style.visibility = 'hidden'
             delBtn.style.visibility = 'hidden'
         })
         doneBtn.addEventListener('click', () => {
-            newItem.removeChild(doneBtn)
-            newItem.removeChild(delBtn)
-            doneList.insertBefore(newItem, doneList.childNodes[0])
-            newItem.style.textDecoration = 'line-through'
+            list.removeChild(btn)
+            doneList.insertBefore(list, doneList.childNodes[0])
+            newItem.className = 'doneItem'
         })
         delBtn.addEventListener('click', () => {
-            todoList.removeChild(newItem)
+            todoList.removeChild(list)
         })
 
         //Get Input
         let item = input.value
         newItem.append(item)
-        newItem.append(doneBtn)
-        newItem.append(delBtn)
-        todoList.insertBefore(newItem, todoList.childNodes[0])
-        spanTask.append(todoList)
-        spanTask.append(doneList)
-        main.append(spanTask)
+        btn.append(doneBtn)
+        btn.append(delBtn)
+        list.append(newItem)
+        list.append(btn)
+        list.append(document.createElement('br'))
+        todoList.insertBefore(list, todoList.childNodes[0])
+        tasks.append(todoList)
+        tasks.append(doneList)
+        main.append(tasks)
     } else {
         alert('The Task Box is NOT Filled')
     }
+}
+
+//Add List by Clicking
+addBtn.addEventListener('click', () => {
+    doList()
 })
 
 //Add List by Enter Key
 input.addEventListener('keypress', ev => {
     if(ev.code === 'Enter') {
-        if(input.value.length != 0) {
-            ev.preventDefault()
-            const newItem = document.createElement("li")
-            let item = input.value
-            newItem.append(item)
-            todoList.insertBefore(newItem, todoList.childNodes[0])
-            spanTask.append(todoList)
-            main.append(spanTask)
-        } else {
-            alert('The Task Box is NOT Filled')
-        }
+        ev.preventDefault()
+        doList()
     }
 })
 
